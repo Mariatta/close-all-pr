@@ -12,9 +12,9 @@ async def close_pr(event, gh, *args, **kwargs):
     data = {'state': 'closed',
             'maintainer_can_modify': True}
     await gh.patch(event.data["pull_request"]["url"], data=data)
-    pr_comment = {'body': f"Thanks for the PR @{event.data['user']['login']}. "
+    pr_comment = {'body': f"Thanks for the PR @{event.data['pull_request']['user']['login']}. "
                           f"But this repo is not accepting any PRs for now. "
                           f"Closing your PR. "
-                          f"Signed, Mariatta's personal GitHub bot 🤖"
+                          f"From  Mariatta's personal GitHub bot 🤖"
                   }
     await gh.post(event.data["pull_request"]["comments_url"], data=pr_comment)
