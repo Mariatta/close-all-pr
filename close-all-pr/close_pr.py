@@ -16,9 +16,9 @@ async def close_pr(event, gh, *args, **kwargs):
                           f"From  Mariatta's personal GitHub bot 🤖"
                   }
 
-    data = await gh.getitem('https://api.github.com/repos/mariatta/cpython/git/refs/heads')
+    data = await gh.getitem('/repos/mariatta/cpython/git/refs/heads')
     print("getitem")
     print(data)
-    async for item in gh.getiter('https://api.github.com/repos/mariatta/cpython/git/refs/heads'):
+    async for item in gh.getiter('/repos/mariatta/cpython/git/refs/heads'):
         print(item)
     await gh.post(event.data["pull_request"]["comments_url"], data=pr_comment)
