@@ -26,7 +26,7 @@ async def main(request):
             return web.Response(status=200)
         oauth_token = os.environ.get("GH_AUTH")
         async with aiohttp.ClientSession() as session:
-            gh = gh_aiohttp.GitHubAPI(session,
+            gh = gh_aiohttp.GitHubAPI(session, "mariatta/close-all-pr",
                                       oauth_token=oauth_token,
                                       cache=cache)
             # Give GitHub some time to reach internal consistency.
