@@ -2,8 +2,6 @@
 
 import gidgethub.routing
 
-
-
 router = gidgethub.routing.Router()
 
 
@@ -18,4 +16,8 @@ async def close_pr(event, gh, *args, **kwargs):
                           f"Closing your PR. "
                           f"From  Mariatta's personal GitHub bot 🤖"
                   }
+    gh.getitem('https://api.github.com/repos/miss-islington/cpython/git/refs/heads')
+
+    async for item in gh.getiter('https://api.github.com/repos/miss-islington/cpython/git/refs/heads'):
+        print(item)
     await gh.post(event.data["pull_request"]["comments_url"], data=pr_comment)
