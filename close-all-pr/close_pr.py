@@ -13,10 +13,8 @@ async def close_pr(event, gh, *args, **kwargs):
     await gh.patch(event.data["pull_request"]["url"], data=data)
     pr_comment = {'body': f"Thanks for the PR @{event.data['pull_request']['user']['login']}. "
                           f"But this repo is not accepting any PRs for now. "
-                          f"Closing your PR. "
                           f"From  Mariatta's personal GitHub bot 🤖"
                   }
-    gh.getitem('https://api.github.com/repos/miss-islington/cpython/git/refs/heads')
 
     async for item in gh.getiter('https://api.github.com/repos/miss-islington/cpython/git/refs/heads'):
         print(item)
