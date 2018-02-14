@@ -12,13 +12,7 @@ async def close_pr(event, gh, *args, **kwargs):
             'maintainer_can_modify': True}
     await gh.patch(event.data["pull_request"]["url"], data=data)
     pr_comment = {'body': f"Thanks for the PR @{event.data['pull_request']['user']['login']}. "
-                          f"But this repo is not accepting any PRs for now. "
-                          f"From  Mariatta's personal GitHub bot 🤖"
+                          f"But this repo is not accepting any PRs for now.\n\n"
+                          f"--Mariatta's personal GitHub bot 🤖"
                   }
-
-    data = await gh.getitem('/repos/mariatta/cpython/git/refs/heads')
-    print("getitem")
-    print(data)
-    async for item in gh.getiter('/repos/mariatta/cpython/git/refs/heads'):
-        print(item)
     await gh.post(event.data["pull_request"]["comments_url"], data=pr_comment)
